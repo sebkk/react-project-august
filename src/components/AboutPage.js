@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import TimerIcon from '@material-ui/icons/Timer';
 import FunctionsIcon from '@material-ui/icons/Functions';
@@ -49,6 +51,7 @@ const Title = styled.div`
 `
 const Description = styled.div`
     font-size: 14px;
+    color: white;
 `
 
 function AboutPage() {
@@ -58,43 +61,43 @@ function AboutPage() {
     return (
         <Container>
             <Line>
-                <Block>
+                <Block><Link to='/about-me' style={{ textDecoration: 'none' }}>
                     <Icon> <PermIdentityIcon fontSize='large' /> </Icon>
                     <Title>O mnie</Title>
                     <Description>{descriptionText}</Description>
-                </Block>
+                </Link></Block>
 
-                <Block>
+                <Block><Link to='/timer' style={{ textDecoration: 'none' }}>
                     <Icon> <TimerIcon fontSize='large' /> </Icon>
                     <Title>Stoper</Title>
                     <Description>{descriptionText}</Description>
-                </Block>
+                </Link></Block>
 
-                <Block>
+                <Block><Link to='/counter' style={{ textDecoration: 'none' }}>
                     <Icon> <FunctionsIcon fontSize='large' /> </Icon>
                     <Title>Licznik</Title>
                     <Description>{descriptionText}</Description>
-                </Block>
+                </Link></Block>
             </Line>
 
             <Line>
-                <Block>
+                <Block><Link to='/characters-list' style={{ textDecoration: 'none' }}>
                     <Icon> <GroupIcon fontSize='large' /> </Icon>
                     <Title>Lista postaci</Title>
                     <Description>{descriptionText}</Description>
-                </Block>
+                </Link></Block>
 
-                <Block>
+                <Block><Link to='/register' style={{ textDecoration: 'none' }}>
                     <Icon> <CreateIcon fontSize='large' /> </Icon>
                     <Title>Rejestracja</Title>
                     <Description>{descriptionText}</Description>
-                </Block>
+                </Link></Block>
 
-                <Block>
+                <Block><Link to='/login' style={{ textDecoration: 'none' }}>
                     <Icon> <MeetingRoomIcon fontSize='large' /> </Icon>
                     <Title>Logowanie</Title>
                     <Description>{descriptionText}</Description>
-                </Block>
+                </Link></Block>
             </Line>
         </Container>
     )
