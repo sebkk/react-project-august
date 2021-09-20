@@ -85,8 +85,6 @@ const CharactersList = () => {
         }
 
         page++
-
-        console.log(page)
     }
 
     return (

@@ -21,14 +21,11 @@ const List = styled.div`
 
 const CardsList = ({ characters }) => {
 
-
-
     return (
         <Container>
             <List>
                 {
                     characters.results
-                        // .filter((item, index) => index < 18)
                         .map(({ name, species, image, status }, index) =>
                             <CharactersCard key={name} name={name} species={species} image={image} index={index} status={status} />)
                 }
