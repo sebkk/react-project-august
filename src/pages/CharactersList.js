@@ -5,6 +5,7 @@ import { Switch } from '@material-ui/core';
 import { FormControlLabel } from '@material-ui/core';
 
 import CardsList from '../components/CardsList';
+import axios from 'axios';
 
 const Container = styled.div`
     padding-top: 40px;
@@ -55,9 +56,8 @@ const CharactersList = () => {
     }
 
     useEffect(() => {
-        fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
-            .then(response => response.json())
-            .then(data => setCharacters(data))
+        axios.get(`https://rickandmortyapi.com/api/character?page=${page}`)
+            .then(response => setCharacters(response.data))
     }, [])
 
     if (!characters) {
