@@ -16,9 +16,7 @@ const ButtonsLine = styled.div`
 `
 
 const Number = styled.div`
-    color: ${(props) => {
-        console.log(props); return props.counter % 5 ? 'white' : 'white'
-    }}
+    color: ${({ counter }) => (counter % 5 === 0 ? 'green' : 'white')};
 `
 
 const MakeCounter = () => {
@@ -41,7 +39,7 @@ const MakeCounter = () => {
 
     return (
         <Container>
-            <Number>
+            <Number counter={counter}>
                 {counter}
             </Number>
 

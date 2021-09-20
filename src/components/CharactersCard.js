@@ -1,37 +1,45 @@
 import React from 'react';
 import styled from 'styled-components'
 
+const List = styled.div`
+`
+
 const Card = styled.div`
-    background-color: ${({ theme, xxx }) => xxx === 'light' ? theme.light.mainColor : theme.dark.mainColor};
+border: 1px solid black;
+    margin: 10px 10px 10px 10px;
+    box-sizing: border-box;
+    width: 103px;
+    height: 185px;
 `
 
 const Title = styled.div`
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: bold;
     text-align: center;
-    color: palevioletred;
 `
 
 const Paragraph = styled.p`
-    color: ${(props) => {
-        console.log(props); return props.index % 2 ? 'blue' : 'red'
-    }};
+    margin: 3px;
+    font-size: 12px;
 `
 
-const EnhancedParagraph = styled(Paragraph)`
-
+const Image = styled.img`
+    width: 100px;
+    height: 100px;
 `
 
-const CharactersCard = ({ name, image, species, index }) => {
+const CharactersCard = ({ name, image, species, index, status }) => {
 
     return (
-        <Card data-name={name}>
-            <img src={image} alt={name} />
-            <div className='container'>
-                <Title>{name}</Title>
-                <Paragraph index={index}>{species}</Paragraph>
-                <EnhancedParagraph index={index}>{species} </EnhancedParagraph>
-            </div>
-        </Card>
+        <List>
+            <Card data-name={name}>
+                <Image src={image} alt={name} />
+                <div className='container'>
+                    <Title>{name}</Title>
+                    <Paragraph index={index}>{species}, {status}</Paragraph>
+                </div>
+            </Card>
+        </List>
     )
 
 }
