@@ -18,9 +18,15 @@ const List = styled.div`
     justify-content: space-evenly;
 `
 
-
-
 const CardsList = ({ characters, selectedStatus, alphabeticalOrder }) => {
+
+    const alphabeticalSort = () => {
+        if (alphabeticalOrder === true) {
+            characters.results.sort((a, b) => a.name.localeCompare(b.name))
+        } else if (alphabeticalOrder === false) {
+            characters.results.sort((a, b) => b.name.localeCompare(a.name))
+        }
+    }
 
     return (
         <Container>
@@ -28,25 +34,20 @@ const CardsList = ({ characters, selectedStatus, alphabeticalOrder }) => {
                 {
                     characters.results
                         .filter(item => {
-                            if (selectedStatus === 'Alive') {
-                                return item.status === 'Alive'
-                            } else if (selectedStatus === 'Dead') {
+                            if (selectedStatus === 'Dead') {
                                 return item.status === 'Dead'
                             } else if (selectedStatus === 'unknown') {
                                 return item.status === 'unknown'
-                            } else if (selectedStatus === 'All') {
+                            } else if (selectedStatus === 'Alive') {
+                                return item.status === 'Alive'
+                            } else {
                                 return true
                             }
                         })
                         .map(({ id, name, species, image, status }, index) =>
                             <CharactersCard key={name, id} name={name} species={species} image={image} index={index} status={status} />)
-                        .sort((a, b) => {
-                            if (alphabeticalOrder === true) {
-                                return a.name.localeCompare(b.name)
-                            }
-                        })
+                        .sort(alphabeticalSort)
                 }
-
             </List>
         </Container>
     )

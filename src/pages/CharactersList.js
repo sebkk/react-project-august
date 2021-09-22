@@ -6,6 +6,7 @@ import { FormControlLabel } from '@material-ui/core';
 import axios from 'axios';
 
 import CardsList from '../components/CardsList';
+import alphabeticalSort from '../components/CardsList';
 
 const Container = styled.div`
     margin-top: 40px;
@@ -88,25 +89,26 @@ const CharactersList = () => {
         setPage(1)
     }
 
+    console.log(alphabeticalOrder)
+
     return (
         <Container>
-            <Head> LISTA POSTACI </Head>
+            <Head> LISTA POSTACI {page}/{characters.info.pages}</Head>
             <PagesButtons>
                 <Button onClick={prevPage} style={{ margin: 5 }} variant="contained">Poprzednia</Button>
                 <Button onClick={firstPage} style={{ margin: 5 }} variant="contained">Pierwsza</Button>
-                <Button style={{ margin: 5 }} variant="contained">{page}</Button>
                 <Button onClick={nextPage} style={{ margin: 5 }} variant="contained">Następna</Button>
             </PagesButtons>
 
             <FiltersBlock>
                 <Filters onChange={(e) => setSelectedStatus(e.target.value)}>
-                    <option selected value='All'>All</option>
+                    <option value='All'>All</option>
                     <option value='Alive'>Alive</option>
                     <option value='Dead'>Dead</option>
                     <option value='unknown'>Others</option>
                 </Filters>
 
-                <FormControlLabel control={<Switch onChange={(e) => setAlphabeticalOrder(e.target.value)} value={true} />} label="A-Z" />
+                <FormControlLabel control={<Switch onChange={(e) => setAlphabeticalOrder(e.target.checked)} />} label="A-Z" />
             </FiltersBlock>
 
             <CardsBlock>
