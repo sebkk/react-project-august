@@ -5,11 +5,15 @@ const List = styled.div`
 `
 
 const Card = styled.div`
-border: 1px solid black;
+    background: #C8B590;
+    border-radius: 8px;
     margin: 10px 10px 10px 10px;
     box-sizing: border-box;
+    padding-bottom: 5px;
+    text-align: center;
     width: 103px;
-    height: 185px;
+    height: auto;
+    box-shadow: 3px 3px 10px black;
 `
 
 const Title = styled.div`
@@ -24,6 +28,8 @@ const Paragraph = styled.p`
 `
 
 const Image = styled.img`
+    text-align: center;
+    border-radius: 7px;
     width: 100px;
     height: 100px;
 `

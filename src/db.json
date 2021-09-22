@@ -1,0 +1,11 @@
+{
+    "accounts": [
+        {
+            "id": 1,
+            "fname": "Admin",
+            "surname": "Admin",
+            "email": "admin@o2.pl",
+            "password": "admin"
+        }
+    ]
+}

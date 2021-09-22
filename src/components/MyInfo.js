@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ReactRoundedImage from "react-rounded-image";
 import MyPhoto from "../images/me.jpg";

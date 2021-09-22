@@ -3,17 +3,19 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { Switch } from '@material-ui/core';
 import { FormControlLabel } from '@material-ui/core';
-
-import CardsList from '../components/CardsList';
 import axios from 'axios';
 
+import CardsList from '../components/CardsList';
+
 const Container = styled.div`
-    padding-top: 40px;
-    height: 100vh;
+    margin-top: 40px;
+    padding: 30px 10px 20px 10px;
+    min-height: 100vh;
+    height: auto;
     background-color: #555868;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 `
 
@@ -42,23 +44,17 @@ const FiltersBlock = styled.div`
     display: flex;
 `
 
-let page = 1
-
 const CharactersList = () => {
     const [characters, setCharacters] = useState(null)
-
-    function downloadData() {
-        let params = `?page=${page}`
-
-        if (characters.results.status) {
-            params += `&status=${characters.filters.status}`
-        }
-    }
+    const [page, setPage] = useState(1)
+    const [selectedStatus, setSelectedStatus] = useState(null)
+    const [alphabeticalOrder, setAlphabeticalOrder] = useState(null)
 
     useEffect(() => {
         axios.get(`https://rickandmortyapi.com/api/character?page=${page}`)
             .then(response => setCharacters(response.data))
-    }, [])
+            .catch(error => console.log(error))
+    }, [page])
 
     if (!characters) {
         return (
@@ -72,9 +68,10 @@ const CharactersList = () => {
         if (characters.info.prev === null) {
             alert('To pierwsza strona!')
             return
+
         }
 
-        page--
+        setPage(page - 1)
 
     }
 
@@ -84,31 +81,36 @@ const CharactersList = () => {
             return
         }
 
-        page++
+        setPage(page + 1)
+    }
+
+    const firstPage = () => {
+        setPage(1)
     }
 
     return (
         <Container>
-            <Head> Lista Postaci </Head>
+            <Head> LISTA POSTACI </Head>
             <PagesButtons>
                 <Button onClick={prevPage} style={{ margin: 5 }} variant="contained">Poprzednia</Button>
+                <Button onClick={firstPage} style={{ margin: 5 }} variant="contained">Pierwsza</Button>
                 <Button style={{ margin: 5 }} variant="contained">{page}</Button>
                 <Button onClick={nextPage} style={{ margin: 5 }} variant="contained">Następna</Button>
             </PagesButtons>
 
             <FiltersBlock>
-                <Filters>
+                <Filters onChange={(e) => setSelectedStatus(e.target.value)}>
                     <option selected value='All'>All</option>
                     <option value='Alive'>Alive</option>
                     <option value='Dead'>Dead</option>
-                    <option value='Others'>Others</option>
+                    <option value='unknown'>Others</option>
                 </Filters>
 
-                <FormControlLabel control={<Switch defaultChecked />} label="A-Z" />
+                <FormControlLabel control={<Switch onChange={(e) => setAlphabeticalOrder(e.target.value)} value={true} />} label="A-Z" />
             </FiltersBlock>
 
             <CardsBlock>
-                <CardsList characters={characters} setCharacters={setCharacters} page={page} />
+                <CardsList characters={characters} selectedStatus={selectedStatus} alphabeticalOrder={alphabeticalOrder} setCharacters={setCharacters} page={page} />
             </CardsBlock>
         </Container>
     )

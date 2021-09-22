@@ -1,5 +1,4 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
+import React, { useState, useEffect } from 'react'
 
 import styled from 'styled-components'
 
@@ -44,6 +43,11 @@ const RegisterButton = styled.button`
 
 const RegisterForm = () => {
 
+    const [account, setAccount] = useState(null)
+
+    // useEffect(() => {
+    //     axios.get('')
+    // }, [])
 
     return (
         <Container>

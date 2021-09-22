@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components'
-import Button from '@material-ui/core/Button';
-
 
 import CharactersCard from './CharactersCard';
 
@@ -11,6 +9,7 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
+    
 `
 
 const List = styled.div`
@@ -19,15 +18,33 @@ const List = styled.div`
     justify-content: space-evenly;
 `
 
-const CardsList = ({ characters }) => {
+
+
+const CardsList = ({ characters, selectedStatus, alphabeticalOrder }) => {
 
     return (
         <Container>
             <List>
                 {
                     characters.results
-                        .map(({ name, species, image, status }, index) =>
-                            <CharactersCard key={name} name={name} species={species} image={image} index={index} status={status} />)
+                        .filter(item => {
+                            if (selectedStatus === 'Alive') {
+                                return item.status === 'Alive'
+                            } else if (selectedStatus === 'Dead') {
+                                return item.status === 'Dead'
+                            } else if (selectedStatus === 'unknown') {
+                                return item.status === 'unknown'
+                            } else if (selectedStatus === 'All') {
+                                return true
+                            }
+                        })
+                        .map(({ id, name, species, image, status }, index) =>
+                            <CharactersCard key={name, id} name={name} species={species} image={image} index={index} status={status} />)
+                        .sort((a, b) => {
+                            if (alphabeticalOrder === true) {
+                                return a.name.localeCompare(b.name)
+                            }
+                        })
                 }
 
             </List>
