@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import useForm from '../utils/useForm'
 
 import styled from 'styled-components'
 
@@ -43,14 +44,55 @@ const RegisterButton = styled.button`
 
 const RegisterForm = () => {
 
+    const register = e => {
+        e.preventDefault();
+        return (
+            console.log(values),
+            axios.post('http://localhost:3000/users', {
+
+                fname: values.fname,
+                surname: values.surname,
+                email: values.email,
+                password: values.password,
+
+            })
+        )
+    }
+
+    const [values, handleChange] = useForm(register)
+
 
     return (
         <Container>
-            <Registration onSubmit>
-                <Input type='text' placeholder='Imię'></Input>
-                <Input type='text' placeholder='Nazwisko'></Input>
-                <Input type='email' placeholder='Email'></Input>
-                <Input type='password' placeholder='Hasło'></Input>
+            <Registration onSubmit={register}>
+                <Input
+                    type='text'
+                    placeholder='Imię'
+                    value={values.fname}
+                    onChange={handleChange}
+                    name='fname'
+                />
+                <Input
+                    type='text'
+                    placeholder='Nazwisko'
+                    value={values.surname}
+                    onChange={handleChange}
+                    name='surname'
+                />
+                <Input
+                    type='email'
+                    placeholder='Email'
+                    value={values.email}
+                    onChange={handleChange}
+                    name='email'
+                />
+                <Input
+                    type='password'
+                    placeholder='Hasło'
+                    value={values.password}
+                    onChange={handleChange}
+                    name='password'
+                />
 
                 <RegisterButton type='submit'>Zarejestruj się</RegisterButton>
             </Registration>

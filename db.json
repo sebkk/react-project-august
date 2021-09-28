@@ -1,5 +1,18 @@
 {
   "users": [
-    
+    {
+      "fname": "Sebastian",
+      "surname": "Grabczak",
+      "email": "sebastianmun11@gmail.com",
+      "password": "aaaa",
+      "id": 1
+    },
+    {
+      "fname": "sdadas",
+      "surname": "dsdasaa",
+      "email": "sdada@daaaa",
+      "password": "ssssss",
+      "id": 2
+    }
   ]
 }

@@ -51,12 +51,11 @@ function App() {
       <Route path="/timer">
         <Timer />
       </Route>
-      {characters?.results
-        .map(item => {
-          return (<Route path={`/${item.name}/${item.id}`}>
-            <CharacterPage item={item} />
-          </Route>)
-        })}
+      {characters?.results.map(item => {
+        return (<Route path={`/${item.name}/${item.id}`}>
+          <CharacterPage item={item} />
+        </Route>)
+      })}
     </Router>
   );
 }
