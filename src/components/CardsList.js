@@ -31,6 +31,7 @@ const CardsList = ({ characters, selectedStatus, alphabeticalOrder }) => {
     return (
         <Container>
             <List>
+
                 {
                     characters.results
                         .filter(item => {
@@ -45,7 +46,7 @@ const CardsList = ({ characters, selectedStatus, alphabeticalOrder }) => {
                             }
                         })
                         .map(({ id, name, species, image, status }, index) =>
-                            <CharactersCard key={name, id} name={name} species={species} image={image} index={index} status={status} />)
+                            <CharactersCard key={name, id} name={name} id={id} species={species} image={image} index={index} status={status} />)
                         .sort(alphabeticalSort)
                 }
             </List>

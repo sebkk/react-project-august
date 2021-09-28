@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
+import { Link } from 'react-router-dom';
+
 
 const List = styled.div`
 `
@@ -34,16 +36,19 @@ const Image = styled.img`
     height: 100px;
 `
 
-const CharactersCard = ({ name, image, species, index, status }) => {
+
+const CharactersCard = ({ name, id, image, species, gender, index, status }) => {
 
     return (
         <List>
-            <Card data-name={name}>
-                <Image src={image} alt={name} />
-                <div className='container'>
-                    <Title>{name}</Title>
-                    <Paragraph index={index}>{species}, {status}</Paragraph>
-                </div>
+            <Card data-name={name} >
+                <Link to={`/characters-list/${name}/${id}`} style={{ textDecoration: 'none' }} key={name, id} name={name} id={id} species={species} image={image} gender={gender} status={status} >
+                    <Image src={image} alt={name} />
+                    <div>
+                        <Title>{name}</Title>
+                        <Paragraph index={index}>{species}, {status}</Paragraph>
+                    </div>
+                </Link>
             </Card>
         </List>
     )

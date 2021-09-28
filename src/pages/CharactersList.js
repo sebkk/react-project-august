@@ -6,7 +6,6 @@ import { FormControlLabel } from '@material-ui/core';
 import axios from 'axios';
 
 import CardsList from '../components/CardsList';
-import alphabeticalSort from '../components/CardsList';
 
 const Container = styled.div`
     margin-top: 40px;

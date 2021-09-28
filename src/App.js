@@ -10,6 +10,7 @@ import Counter from './pages/Counter'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Timer from './pages/Timer'
+import CharacterPage from './pages/CharacterPage';
 
 function App() {
 
@@ -37,6 +38,9 @@ function App() {
       </Route>
       <Route path="/timer">
         <Timer />
+      </Route>
+      <Route path='/characters-list/:name/:id'>
+        <CharacterPage />
       </Route>
     </Router>
   );
