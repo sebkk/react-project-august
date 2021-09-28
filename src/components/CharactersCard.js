@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-import { Link } from 'react-router-dom';
-
+import { useHistory } from "react-router";
 
 const List = styled.div`
 `
@@ -37,18 +36,22 @@ const Image = styled.img`
 `
 
 
-const CharactersCard = ({ name, id, image, species, gender, index, status }) => {
+const CharactersCard = ({ name, id, image, species, index, status }) => {
+
+    let history = useHistory();
+
+    const handleClick = () => {
+        history.push(`/${name}/${id}`)
+    }
 
     return (
         <List>
-            <Card data-name={name} >
-                <Link to={`/characters-list/${name}/${id}`} style={{ textDecoration: 'none' }} key={name, id} name={name} id={id} species={species} image={image} gender={gender} status={status} >
-                    <Image src={image} alt={name} />
-                    <div>
-                        <Title>{name}</Title>
-                        <Paragraph index={index}>{species}, {status}</Paragraph>
-                    </div>
-                </Link>
+            <Card data-name={name} onClick={handleClick} >
+                <Image src={image} alt={name} />
+                <div>
+                    <Title>{name}</Title>
+                    <Paragraph index={index}>{species}, {status}</Paragraph>
+                </div>
             </Card>
         </List>
     )

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import axios from 'axios';
 
 import Navigation from './components/Navigation';
 import PhotoBlock from './components/PhotoBlock';
@@ -13,6 +14,17 @@ import Timer from './pages/Timer'
 import CharacterPage from './pages/CharacterPage';
 
 function App() {
+
+  const [characters, setCharacters] = useState(null)
+
+  useEffect(() => {
+    axios.get(`https://rickandmortyapi.com/api/character`)
+      .then(response => setCharacters(response.data))
+      .catch(error => console.log(error))
+
+  }, [])
+
+  console.log(characters, 'char')
 
   return (
     <Router>
@@ -39,9 +51,12 @@ function App() {
       <Route path="/timer">
         <Timer />
       </Route>
-      <Route path='/characters-list/:name/:id'>
-        <CharacterPage />
-      </Route>
+      {characters?.results
+        .map(item => {
+          return (<Route path={`/${item.name}/${item.id}`}>
+            <CharacterPage item={item} />
+          </Route>)
+        })}
     </Router>
   );
 }

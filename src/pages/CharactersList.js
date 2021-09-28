@@ -56,14 +56,6 @@ const CharactersList = () => {
             .catch(error => console.log(error))
     }, [page])
 
-    if (!characters) {
-        return (
-            <div>
-                Brak danych z backendu
-            </div>
-        )
-    }
-
     const prevPage = () => {
         if (characters.info.prev === null) {
             alert('To pierwsza strona!')
@@ -88,7 +80,13 @@ const CharactersList = () => {
         setPage(1)
     }
 
-    console.log(alphabeticalOrder)
+    if (!characters) {
+        return (
+            <div>
+                Brak danych z backendu
+            </div>
+        )
+    }
 
     return (
         <Container>

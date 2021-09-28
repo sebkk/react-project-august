@@ -1,43 +1,75 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router";
+
+import Button from '@material-ui/core/Button';
 
 const Container = styled.div`
-    text-align: center;
+    width: 100vw;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    background-color: #393F60;
+    background-color: #555868;
     box-sizing: border-box;
-    padding: 15px;
+    padding-top: 90px;
 `;
 
 const Title = styled.div`
-    font-size: 14px;
+    margin-top: 5px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
 `
 
 const Paragraph = styled.p`
-    margin: 3px;
-    font-size: 12px;
+    margin: 4px;
+    font-size: 15px;
 `
 
 const Image = styled.img`
     text-align: center;
     border-radius: 7px;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
 `
 
-function CharacterPage({ name, id, image, species, status, gender }) {
+const Card = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    color: white;
+    text-align: center;
+`
+
+const Line = styled.div`
+    width: 10%;
+`
+
+function CharacterPage({ item }) {
+
+    let history = useHistory();
+
+    const handleClick = () => {
+        history.push('/characters-list')
+    }
 
     return (
         <>
             <Container>
-                <Image src={image} alt={name} />
-                <div>
-                    <Title>{name}</Title>
-                    <Paragraph>{species}, {status}, {gender}</Paragraph>
-                </div>
+
+                <Line>
+                    <Button onClick={handleClick} style={{ margin: 5 }} variant="contained">Wróć</Button>
+                </Line>
+
+                <Card>
+                    <Image src={item.image} alt={item.name} />
+                    <div>
+                        <Title>{item.name}</Title>
+                        <Paragraph>SPECIES: {item.species}</Paragraph>
+                        <Paragraph>STATUS: {item.status}</Paragraph>
+                        <Paragraph>GENDER: {item.gender}</Paragraph>
+                    </div>
+                </Card>
             </Container>
         </>
     )

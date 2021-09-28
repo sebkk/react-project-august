@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import styled from 'styled-components'
 
@@ -24,8 +25,7 @@ const Input = styled.input`
     padding: 10px;
     border-radius: 7px;
     border: 0;
-    text-transform: uppercase;
-`
+    `
 
 const RegisterButton = styled.button`
     margin: 10px;
@@ -43,11 +43,6 @@ const RegisterButton = styled.button`
 
 const RegisterForm = () => {
 
-    const [account, setAccount] = useState(null)
-
-    // useEffect(() => {
-    //     axios.get('')
-    // }, [])
 
     return (
         <Container>

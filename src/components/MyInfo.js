@@ -7,7 +7,7 @@ import MyPhoto from "../images/me.jpg";
 const person = {
     photo: MyPhoto,
     personName: 'Sebastian',
-    surname: 'Grabczak',
+    surName: 'Grabczak',
     details: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
 }
 
@@ -29,7 +29,7 @@ const Info = styled.p`
 
 `
 
-const MyInfo = (personName, surname, details, photo) => {
+const MyInfo = (personName, surName, details, photo) => {
 
     return (
         <Wrapper>
