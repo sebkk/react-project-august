@@ -44,7 +44,7 @@ const FiltersBlock = styled.div`
     display: flex;
 `
 
-const CharactersList = () => {
+const CharactersList = ({ setMainCharacters }) => {
     const [characters, setCharacters] = useState(null)
     const [page, setPage] = useState(1)
     const [selectedStatus, setSelectedStatus] = useState(null)
@@ -52,7 +52,10 @@ const CharactersList = () => {
 
     useEffect(() => {
         axios.get(`https://rickandmortyapi.com/api/character?page=${page}`)
-            .then(response => setCharacters(response.data))
+            .then((response) => {
+                setMainCharacters(response.data.results);
+                setCharacters(response.data);
+            })
             .catch(error => console.log(error))
     }, [page])
 
@@ -90,7 +93,9 @@ const CharactersList = () => {
 
     return (
         <Container>
-            <Head> LISTA POSTACI {page}/{characters.info.pages}</Head>
+            <Head>
+                {" "}
+                LISTA POSTACI {page}/{characters.info.pages}</Head>
             <PagesButtons>
                 <Button onClick={prevPage} style={{ margin: 5 }} variant="contained">Poprzednia</Button>
                 <Button onClick={firstPage} style={{ margin: 5 }} variant="contained">Pierwsza</Button>

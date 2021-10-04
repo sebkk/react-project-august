@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import axios from 'axios';
 
 import Navigation from './components/Navigation';
 import PhotoBlock from './components/PhotoBlock';
@@ -15,16 +14,7 @@ import CharacterPage from './pages/CharacterPage';
 
 function App() {
 
-  const [characters, setCharacters] = useState(null)
-
-  useEffect(() => {
-    axios.get(`https://rickandmortyapi.com/api/character`)
-      .then(response => setCharacters(response.data))
-      .catch(error => console.log(error))
-
-  }, [])
-
-  console.log(characters, 'char')
+  const [mainCharacters, setMainCharacters] = useState(null);
 
   return (
     <Router>
@@ -37,7 +27,7 @@ function App() {
         <AboutMe />
       </Route>
       <Route path="/characters-list">
-        <CharactersList />
+        <CharactersList setMainCharacters={setMainCharacters} />
       </Route>
       <Route path="/counter">
         <Counter />
@@ -51,10 +41,12 @@ function App() {
       <Route path="/timer">
         <Timer />
       </Route>
-      {characters?.results.map(item => {
-        return (<Route path={`/${item.name}/${item.id}`}>
-          <CharacterPage item={item} />
-        </Route>)
+      {mainCharacters?.map((item) => {
+        return (
+          <Route path={`/${item.name}/${item.id}`}>
+            <CharacterPage item={item} />
+          </Route>
+        );
       })}
     </Router>
   );

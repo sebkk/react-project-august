@@ -44,27 +44,35 @@ const RegisterButton = styled.button`
 
 const RegisterForm = () => {
 
-    const register = e => {
+    // const [usersData, setUsersData] = useState(null)
+
+    // useEffect(() => {
+    //     axios.get(`http://localhost:3000/users`)
+    //         .then(response => setUsersData(response.data))
+    //         .catch(error => console.log(error))
+    // }, [])
+
+    // console.log(usersData, 'usersData')
+
+    const registerClick = e => {
         e.preventDefault();
-        return (
-            console.log(values),
-            axios.post('http://localhost:3000/users', {
 
-                fname: values.fname,
-                surname: values.surname,
-                email: values.email,
-                password: values.password,
+        axios.post('http://localhost:3000/users', {
+            fname: values.fname,
+            surname: values.surname,
+            email: values.email,
+            password: values.password,
+        })
+            .then(response => console.log(response))
+            .catch(error => console.log(error))
 
-            })
-        )
     }
 
-    const [values, handleChange] = useForm(register)
-
+    const [values, handleChange] = useForm(registerClick)
 
     return (
         <Container>
-            <Registration onSubmit={register}>
+            <Registration onSubmit={registerClick}>
                 <Input
                     type='text'
                     placeholder='Imię'
