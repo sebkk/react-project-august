@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import axios from 'axios'
+
+import { useHistory } from "react-router";
 
 const Container = styled.div`
     width: 100%;
@@ -23,7 +26,6 @@ const Input = styled.input`
     padding: 10px;
     border-radius: 7px;
     border: 0;
-    text-transform: uppercase;
 `
 
 const LoginButton = styled.button`
@@ -42,11 +44,45 @@ const LoginButton = styled.button`
 
 const LoginForm = () => {
 
+    let history = useHistory();
+
+    const [usersData, setUsersData] = useState({})
+    const [passwordValue, setPasswordValue] = useState('')
+    const [emailValue, setEmailValue] = useState('')
+
+    useEffect(() => {
+        axios.get(`http://localhost:3000/users`)
+            .then(response => setUsersData(response.data))
+            .catch(error => console.log(error))
+    }, [])
+
+    // console.log(emailValue, 'valuesEmails', passwordValue, 'valuesPassword')
+
+    const handleClick = () => {
+
+        usersData.map((usersInfo) => {
+            console.log(usersInfo.email, 'email mapa', usersInfo.password, 'password mapa')
+            if (emailValue === usersInfo.email && passwordValue === usersInfo.password) {
+                return history.push(`/success-login`)
+            }
+
+            if (emailValue !== usersInfo.email || passwordValue !== usersInfo.password) {
+                return console.log('Podane dane są nieprawidłowe!')
+            }
+        })
+    }
+
     return (
         <Container>
-            <Login>
-                <Input type='email' placeholder='Email'></Input>
-                <Input type='password' placeholder='Hasło'></Input>
+            <Login onSubmit={handleClick}>
+                <Input
+                    onChange={e => setEmailValue(e.target.value)}
+                    type='email'
+                    placeholder='Email'></Input>
+                <Input
+                    onChange={e => setPasswordValue(e.target.value)}
+                    type='password'
+                    placeholder='Hasło'></Input>
 
                 <LoginButton type='submit'>Zaloguj się</LoginButton>
             </Login>

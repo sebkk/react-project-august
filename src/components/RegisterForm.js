@@ -3,6 +3,7 @@ import axios from 'axios'
 import useForm from '../utils/useForm'
 
 import styled from 'styled-components'
+import { ContactsOutlined } from '@material-ui/icons'
 
 const Container = styled.div`
     width: 100%;
@@ -44,31 +45,48 @@ const RegisterButton = styled.button`
 
 const RegisterForm = () => {
 
-    // const [usersData, setUsersData] = useState(null)
+    const [usersData, setUsersData] = useState(null)
+    const [checkEmail, setCheckEmail] = useState(false)
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:3000/users`)
-    //         .then(response => setUsersData(response.data))
-    //         .catch(error => console.log(error))
-    // }, [])
-
-    // console.log(usersData, 'usersData')
-
-    const registerClick = e => {
-        e.preventDefault();
-
-        axios.post('http://localhost:3000/users', {
-            fname: values.fname,
-            surname: values.surname,
-            email: values.email,
-            password: values.password,
-        })
-            .then(response => console.log(response))
+    useEffect(() => {
+        axios.get(`http://localhost:3000/users`)
+            .then(response => setUsersData(response?.data?.map((user) => user.email)))
             .catch(error => console.log(error))
+    }, [])
 
+    console.log(usersData, 'usersData')
+
+    const registerClick = () => {
+
+        if (checkEmail === true) {
+            alert('Podany adres email jest zajęty!')
+        } else if (checkEmail === false) {
+            (axios.post('http://localhost:3000/users', {
+                fname: values.fname,
+                surname: values.surname,
+                email: values.email,
+                password: values.password,
+            })
+                .then(response => console.log(response))
+                .catch(error => console.log(error)))
+        }
     }
 
     const [values, handleChange] = useForm(registerClick)
+
+    useEffect(() => {
+        const checkEmailFlag = usersData?.includes(values.email)
+
+        console.log(checkEmailFlag, 'flag')
+
+        if (checkEmailFlag === true) {
+            setCheckEmail(true)
+        } else if (checkEmailFlag === false) {
+            setCheckEmail(false)
+        }
+    }, [values.email])
+
+    console.log(values.email, 'email')
 
     return (
         <Container>

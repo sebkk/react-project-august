@@ -11,6 +11,7 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Timer from './pages/Timer'
 import CharacterPage from './pages/CharacterPage';
+import SuccesLogin from './pages/SuccessLogin';
 
 function App() {
 
@@ -34,6 +35,9 @@ function App() {
       </Route>
       <Route path="/login">
         <Login />
+      </Route>
+      <Route path='/success-login'>
+        <SuccesLogin />
       </Route>
       <Route path="/register">
         <Register />

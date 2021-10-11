@@ -15,25 +15,11 @@
       "id": 2
     },
     {
-      "fname": "aaaa",
-      "surname": "aasdaaa",
-      "email": "aaaa@aaa",
-      "password": "dddd",
+      "fname": "dsdada",
+      "surname": "sddddd",
+      "email": "saas@sss",
+      "password": "dsds",
       "id": 3
-    },
-    {
-      "fname": "weqe",
-      "surname": "aaaa",
-      "email": "dssad@ss",
-      "password": "daaa",
-      "id": 4
-    },
-    {
-      "fname": "sdasda",
-      "surname": "ddddd",
-      "email": "asasas@aa",
-      "password": "sssss",
-      "id": 5
     }
   ]
 }
