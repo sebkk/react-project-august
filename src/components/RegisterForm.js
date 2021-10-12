@@ -30,6 +30,7 @@ const Input = styled.input`
     `
 
 const RegisterButton = styled.button`
+    cursor: pointer;
     margin: 10px;
     width: 60%;
     box-sizing: border-box;

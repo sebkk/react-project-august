@@ -29,6 +29,7 @@ const Input = styled.input`
 `
 
 const LoginButton = styled.button`
+    cursor: pointer;
     margin: 10px;
     width: 60%;
     box-sizing: border-box;

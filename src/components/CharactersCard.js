@@ -6,13 +6,14 @@ const List = styled.div`
 `
 
 const Card = styled.div`
+    cursor: pointer;
     background: #C8B590;
     border-radius: 8px;
-    margin: 10px 10px 10px 10px;
+    margin: 10px 15px 10px 15px;
     box-sizing: border-box;
     padding-bottom: 5px;
     text-align: center;
-    width: 103px;
+    width: 150px;
     height: auto;
     box-shadow: 3px 3px 10px black;
 `

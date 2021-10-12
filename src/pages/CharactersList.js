@@ -38,6 +38,7 @@ const Filters = styled.select`
     box-sizing: border-box;
     padding: 7px;
     border-radius: 7px;
+    cursor: pointer;
 `
 
 const FiltersBlock = styled.div`
